@@ -1,0 +1,68 @@
+spk: "hfc_men"
+
+tag:
+
+sample_rate: 24000
+
+tqdm: tqdm
+
+mu: 255
+
+# Don't use cuda for this experiments becouse of my environment
+cudnn_benchmark: false
+cudnn_deterministic: false
+
+###########################################################
+#                Stage 0 :DATA PREPARATION SETTING        #
+###########################################################
+
+wav_root: "./downloads/hfc_men"
+lab_root: "./downloads/hfc_men-label"
+text_root: "./downloads/hfc_men-text"
+n_jobs: 4
+
+
+
+# ###########################################################
+# #                FEATURE EXTRACTION SETTING               #
+# ###########################################################
+
+# ###########################################################
+# #                TRAINING SETTING                         #
+# ###########################################################
+
+# acoustic_model: tacotron2_rf2
+# wavenet_model: wavenet_sr16k_mulaw256_30layers
+
+# ### Tacotron  ###
+# # エポック数を小さくすると、学習は早く終了します。
+# tacotron_train_max_train_steps: 100000
+# # バッチサイズを小さくすると、GPUメモリ使用量が小さく済みます。
+# # 注意: 必要なGPUメモリ（目安）:
+# # バッチサイズ16の場合に6GB程度、バッチサイズ32の場合に12GB程度
+# # 必要なGPUメモリはミニバッチ内の発話の最大系列長に依存するため、
+# # 余裕を持ってより多くのGPUメモリを確保しておくことを推奨します
+# tacotron_data_batch_size: 32
+
+# ### WaveNet ###
+# # 注意: 50万ステップの学習には数日時間がかかることが予想されます
+# wavenet_train_max_train_steps: 500000
+# # 注意: 必要なGPUメモリ（目安）:
+# # バッチサイズ8の場合に10GB程度、バッチサイズ16の場合に17GB程度
+# # PyTorch 1.8.1, CUDA 11.2, cuDNN 7.6.3
+# wavenet_data_batch_size: 16
+
+# ###########################################################
+# #                SYNTHESIS SETTING                        #
+# ###########################################################
+
+# # リストの逆順で発話を処理する
+# reverse: false
+
+# # 生成する発話の数
+# # -1 の場合、評価の発話をすべて処理する
+# # 音声生成にかかる時間を短縮する場合、小さな値（5など）に設定してください
+# num_eval_utts: -1
+
+# acoustic_eval_checkpoint: latest.pth
+# wavenet_eval_checkpoint: latest_ema.pth

@@ -1,0 +1,14 @@
+numpy 
+matplotlib
+librosa
+pandas
+tqdm
+# ipynbファイルで実行するために必要
+ipykernel
+#以下によってpytorchをインストール
+# pip3 install --pre torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/nightly/cpu
+
+ttslearn
+ipython
+tensorboard
+pydub
